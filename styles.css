@@ -1,0 +1,848 @@
+:root {
+  --color-page: #f4f7fb;
+  --color-surface: #ffffff;
+  --color-surface-soft: #eef5ff;
+  --color-text: #172033;
+  --color-text-muted: #667085;
+  --color-accent: #315ee8;
+  --color-accent-dark: #2448b8;
+  --color-accent-soft: #edf2ff;
+  --color-border: #dfe5ef;
+  --color-error: #b42318;
+  --color-error-soft: #fff1f0;
+  --color-success: #176b45;
+  --shadow-card: 0 12px 32px rgba(27, 44, 84, 0.08);
+  --radius-card: 18px;
+  --radius-control: 10px;
+  --container-width: 1180px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family:
+    Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.site-header {
+  border-bottom: 1px solid rgba(223, 229, 239, 0.9);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.site-header__inner,
+.site-footer__inner,
+.hero,
+.calculator-section,
+.results-dashboard,
+.calculation-explanation,
+.faq-section {
+  width: min(calc(100% - 40px), var(--container-width));
+  margin-inline: auto;
+}
+
+.site-header__inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.brand__mark {
+  width: 38px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.brand__name {
+  font-size: 18px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.site-nav a,
+.site-footer__nav a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.site-nav a {
+  color: var(--color-text-muted);
+  transition: color 160ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-footer__nav a:hover,
+.site-footer__nav a:focus-visible {
+  color: var(--color-accent);
+}
+
+.hero {
+  padding-block: 72px 48px;
+  text-align: center;
+}
+
+.hero__eyebrow {
+  margin: 0 0 12px;
+  color: var(--color-accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.hero__description {
+  max-width: 660px;
+  margin: 18px auto 0;
+  color: var(--color-text-muted);
+  font-size: 18px;
+}
+
+.calculator-section {
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.calculator-section h2,
+.results-dashboard h2,
+.calculation-explanation h2,
+.faq-section h2 {
+  margin: 0;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.calculator-section__description {
+  margin: 8px 0 24px;
+  color: var(--color-text-muted);
+}
+
+.age-form {
+  display: grid;
+  gap: 20px;
+}
+
+.age-form__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.date-field {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.date-field label {
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.date-field input {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid #cbd4e2;
+  border-radius: var(--radius-control);
+  background: #fff;
+  color: var(--color-text);
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.date-field input:hover {
+  border-color: #a8b4c5;
+}
+
+.date-field input:focus-visible {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(49, 94, 232, 0.18);
+}
+
+.date-field input[aria-invalid="true"] {
+  border-color: var(--color-error);
+  background: #fffafa;
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.08);
+}
+
+.date-field__help,
+.date-field__error {
+  margin: 0;
+  font-size: 13px;
+}
+
+.date-field__help {
+  color: var(--color-text-muted);
+}
+
+.date-field__error {
+  color: var(--color-error);
+  font-weight: 700;
+}
+
+.error-summary {
+  padding: 16px 18px;
+  border: 1px solid #f0a49c;
+  border-left: 4px solid var(--color-error);
+  border-radius: var(--radius-control);
+  background: var(--color-error-soft);
+  color: #7a271a;
+}
+
+.error-summary h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.error-summary__list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.error-summary a {
+  font-weight: 700;
+}
+
+.age-form__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.button {
+  min-height: 48px;
+  padding: 11px 20px;
+  border-radius: var(--radius-control);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 800;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible,
+.faq-item button:focus-visible,
+.site-nav a:focus-visible,
+.site-footer__nav a:focus-visible,
+.brand:focus-visible {
+  outline: 3px solid rgba(49, 94, 232, 0.32);
+  outline-offset: 3px;
+}
+
+.button--primary {
+  min-width: 150px;
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(49, 94, 232, 0.18);
+}
+
+.button--primary:hover {
+  background: var(--color-accent-dark);
+}
+
+.button--secondary {
+  border-color: var(--color-border);
+  background: #fff;
+  color: var(--color-text);
+}
+
+.button--secondary:hover {
+  border-color: #b7c2d3;
+  background: #f8fafc;
+}
+
+.results-dashboard {
+  display: grid;
+  gap: 20px;
+  padding-block: 64px 24px;
+  animation: result-enter 220ms ease-out;
+}
+
+.results-dashboard h2 {
+  margin-bottom: 4px;
+}
+
+.main-age-card {
+  padding: 28px 30px;
+  border: 1px solid #ccd8fb;
+  border-top: 5px solid var(--color-accent);
+  border-radius: var(--radius-card);
+  background:
+    linear-gradient(135deg, rgba(237, 242, 255, 0.92), rgba(255, 255, 255, 0.98));
+  box-shadow: var(--shadow-card);
+}
+
+.main-age-card__label {
+  margin: 0 0 8px;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.main-age-card__value {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.main-age-card__context {
+  margin: 12px 0 0;
+  color: var(--color-text-muted);
+  font-size: 15px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+}
+
+.metric-card {
+  min-width: 0;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  box-shadow: 0 6px 18px rgba(27, 44, 84, 0.05);
+}
+
+.metric-card dt {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.metric-card dd {
+  margin: 0;
+}
+
+.metric-card__value {
+  margin-top: 18px !important;
+  overflow-wrap: anywhere;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-card__detail {
+  margin-top: 8px !important;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.birthday-card {
+  padding: 24px 26px;
+  border: 1px solid #bfdccf;
+  border-radius: var(--radius-card);
+  background: #effaf5;
+}
+
+.birthday-card__label {
+  margin: 0 0 6px;
+  color: var(--color-success);
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.birthday-card__date {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 850;
+}
+
+.birthday-card__countdown,
+.birthday-card__note {
+  margin: 6px 0 0;
+  color: #456657;
+  font-size: 14px;
+}
+
+.share-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.share-card__label,
+.share-card__description {
+  margin: 0;
+}
+
+.share-card__label {
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.share-card__description {
+  margin-top: 3px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.share-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.share-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--color-text);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.share-button:active {
+  transform: translateY(1px);
+}
+
+.share-button:focus-visible {
+  outline: 3px solid rgba(49, 94, 232, 0.32);
+  outline-offset: 3px;
+}
+
+.share-button--whatsapp:hover {
+  border-color: #1d9f55;
+  background: #effaf3;
+  color: #13733b;
+}
+
+.share-button--gmail:hover {
+  border-color: #d84d40;
+  background: #fff4f2;
+  color: #a32e24;
+}
+
+.share-button--copy:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-dark);
+}
+
+.status-message {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.calculation-explanation,
+.faq-section {
+  padding-block: 64px;
+}
+
+.calculation-explanation {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.7fr);
+  align-items: start;
+  gap: 48px;
+  margin-top: 24px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.calculation-explanation__steps {
+  margin: 0 0 20px;
+  padding-left: 24px;
+  display: grid;
+  gap: 10px;
+}
+
+.calculation-explanation p:last-child {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.faq-section {
+  padding-bottom: 88px;
+}
+
+.faq-section h2 {
+  margin-bottom: 24px;
+}
+
+.faq-list {
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item h3 {
+  margin: 0;
+}
+
+.faq-item button {
+  width: 100%;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 4px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: left;
+  font-weight: 800;
+}
+
+.faq-item__icon {
+  flex: 0 0 auto;
+  color: var(--color-accent);
+  font-size: 24px;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.faq-item button[aria-expanded="true"] .faq-item__icon {
+  transform: rotate(45deg);
+}
+
+.faq-item__answer {
+  max-width: 860px;
+  padding: 0 40px 20px 4px;
+  color: var(--color-text-muted);
+}
+
+.faq-item__answer p {
+  margin: 0;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: #fff;
+}
+
+.site-footer__inner {
+  min-height: 150px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px 32px;
+  padding-block: 32px;
+}
+
+.site-footer__brand {
+  margin: 0 0 4px;
+  font-weight: 850;
+}
+
+.site-footer__inner > div p:last-child,
+.site-footer__copyright {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.site-footer__copyright {
+  grid-column: 1 / -1;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  text-align: right;
+}
+
+@keyframes result-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1023px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calculation-explanation {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 639px) {
+  .site-header__inner,
+  .site-footer__inner,
+  .hero,
+  .calculator-section,
+  .results-dashboard,
+  .calculation-explanation,
+  .faq-section {
+    width: min(calc(100% - 32px), var(--container-width));
+  }
+
+  .site-header__inner {
+    min-height: 64px;
+  }
+
+  .brand__name {
+    display: none;
+  }
+
+  .site-nav {
+    gap: 14px;
+  }
+
+  .site-nav a {
+    font-size: 13px;
+  }
+
+  .hero {
+    padding-block: 48px 36px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero__description {
+    font-size: 16px;
+  }
+
+  .calculator-section {
+    padding: 20px;
+  }
+
+  .age-form__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .age-form__actions {
+    align-items: stretch;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .results-dashboard {
+    padding-block: 48px 16px;
+  }
+
+  .main-age-card {
+    padding: 22px 20px;
+  }
+
+  .main-age-card__value {
+    font-size: 30px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    min-height: 140px;
+  }
+
+  .birthday-card {
+    padding: 22px 20px;
+  }
+
+  .share-card {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .share-card__actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .share-button {
+    width: 100%;
+    padding-inline: 8px;
+  }
+
+  .calculation-explanation,
+  .faq-section {
+    padding-block: 48px;
+  }
+
+  .calculation-explanation {
+    margin-top: 8px;
+  }
+
+  .faq-section {
+    padding-bottom: 64px;
+  }
+
+  .faq-item button {
+    min-height: 64px;
+  }
+
+  .faq-item__answer {
+    padding-right: 20px;
+  }
+
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__nav {
+    justify-content: flex-start;
+  }
+
+  .site-footer__copyright {
+    text-align: left;
+  }
+}
+
+@media (max-width: 479px) {
+  .site-nav a:nth-child(2) {
+    display: none;
+  }
+
+  .age-form__actions {
+    flex-direction: column;
+  }
+
+  .button--primary,
+  .button--secondary {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

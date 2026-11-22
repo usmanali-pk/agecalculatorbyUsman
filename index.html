@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calculate your exact age in years, months, days, and total time units using calendar-based date calculations.">
+    <title>Age Calculator - Calculate Exact Age</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="#top" aria-label="Age Calculator home">
+          <span class="brand__mark" aria-hidden="true">AC</span>
+          <span class="brand__name">Age Calculator</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#calculator">Calculator</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#faqs">FAQs</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="hero__eyebrow">Exact age calculator</p>
+        <h1 id="page-title">Calculate your exact age</h1>
+        <p class="hero__description">
+          Enter two dates to see your age in years, months, days, and total time units.
+        </p>
+      </section>
+
+      <section class="calculator-section" id="calculator" aria-labelledby="calculator-heading">
+        <h2 id="calculator-heading">Age Calculator</h2>
+        <p class="calculator-section__description">
+          Choose a birth date and the date you want to calculate age at.
+        </p>
+
+        <form class="age-form" novalidate>
+          <div class="error-summary" role="alert" aria-live="assertive" hidden>
+            <h3>Please correct the following</h3>
+            <ul class="error-summary__list"></ul>
+          </div>
+
+          <div class="age-form__fields">
+            <div class="date-field">
+              <label for="birth-date">Date of Birth</label>
+              <input
+                type="date"
+                id="birth-date"
+                name="birth-date"
+                aria-describedby="birth-date-help birth-date-error"
+              >
+              <p class="date-field__help" id="birth-date-help">
+                Enter the date you were born.
+              </p>
+              <p class="date-field__error" id="birth-date-error" hidden></p>
+            </div>
+
+            <div class="date-field">
+              <label for="target-date">Calculate Age At</label>
+              <input
+                type="date"
+                id="target-date"
+                name="target-date"
+                aria-describedby="target-date-help target-date-error"
+              >
+              <p class="date-field__help" id="target-date-help">
+                Defaults to today's date.
+              </p>
+              <p class="date-field__error" id="target-date-error" hidden></p>
+            </div>
+          </div>
+
+          <div class="age-form__actions">
+            <button class="button button--primary" type="submit">
+              Calculate Age
+            </button>
+            <button class="button button--secondary" type="button" id="reset-button">
+              Reset
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="results-dashboard" id="results" aria-labelledby="results-heading" hidden>
+        <h2 id="results-heading">Your Results</h2>
+
+        <article class="main-age-card" aria-label="Exact age">
+          <p class="main-age-card__label">Your exact age</p>
+          <p class="main-age-card__value" id="main-age-value"></p>
+          <p class="main-age-card__context" id="age-as-of"></p>
+        </article>
+
+        <dl class="metrics-grid" aria-label="Elapsed time totals">
+          <div class="metric-card">
+            <dt>Total days</dt>
+            <dd class="metric-card__value" id="total-days-value"></dd>
+            <dd class="metric-card__detail">days elapsed</dd>
+          </div>
+
+          <div class="metric-card">
+            <dt>Total weeks</dt>
+            <dd class="metric-card__value" id="total-weeks-value"></dd>
+            <dd class="metric-card__detail" id="remaining-days-detail"></dd>
+          </div>
+
+          <div class="metric-card">
+            <dt>Total hours</dt>
+            <dd class="metric-card__value" id="total-hours-value"></dd>
+            <dd class="metric-card__detail">based on calendar days</dd>
+          </div>
+
+          <div class="metric-card">
+            <dt>Total minutes</dt>
+            <dd class="metric-card__value" id="total-minutes-value"></dd>
+            <dd class="metric-card__detail">converted from elapsed days</dd>
+          </div>
+
+          <div class="metric-card">
+            <dt>Total seconds</dt>
+            <dd class="metric-card__value" id="total-seconds-value"></dd>
+            <dd class="metric-card__detail">whole elapsed units</dd>
+          </div>
+        </dl>
+
+        <article class="birthday-card" aria-labelledby="birthday-heading">
+          <p class="birthday-card__label" id="birthday-heading">Next birthday</p>
+          <p class="birthday-card__date" id="next-birthday-date"></p>
+          <p class="birthday-card__countdown" id="birthday-countdown"></p>
+          <p class="birthday-card__note" id="february-note" hidden>
+            February 29 birthdays are observed on February 28 in common years.
+          </p>
+        </article>
+
+        <article class="share-card" aria-labelledby="share-heading">
+          <div>
+            <p class="share-card__label" id="share-heading">Share result</p>
+            <p class="share-card__description">Send this age calculation to someone.</p>
+          </div>
+          <div class="share-card__actions">
+            <a
+              class="share-button share-button--whatsapp"
+              id="share-whatsapp"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share result on WhatsApp"
+            >
+              WhatsApp
+            </a>
+            <a
+              class="share-button share-button--gmail"
+              id="share-gmail"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share result by Gmail"
+            >
+              Gmail
+            </a>
+            <button
+              class="share-button share-button--copy"
+              id="copy-result"
+              type="button"
+              aria-label="Copy result"
+            >
+              Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <p
+        class="status-message"
+        id="status-message"
+        aria-live="polite"
+        aria-atomic="true"
+      ></p>
+
+      <section
+        class="calculation-explanation"
+        id="how-it-works"
+        aria-labelledby="how-it-works-heading"
+      >
+        <h2 id="how-it-works-heading">How this age is calculated</h2>
+
+        <ol class="calculation-explanation__steps">
+          <li>Compare the birth date with the selected target date.</li>
+          <li>Count complete calendar years and months.</li>
+          <li>Count the remaining calendar days and convert the total.</li>
+        </ol>
+
+        <p>
+          The calculator uses real calendar lengths and does not treat every month
+          as 30 days. Under the fixed-calendar-anchor rule, February 28 to March 31
+          is counted as 1 month and 3 days.
+        </p>
+      </section>
+
+      <section class="faq-section" id="faqs" aria-labelledby="faqs-heading">
+        <h2 id="faqs-heading">Frequently Asked Questions</h2>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>
+              <button
+                type="button"
+                id="faq-button-1"
+                aria-expanded="false"
+                aria-controls="faq-answer-1"
+              >
+                <span>What does exact age mean?</span>
+                <span class="faq-item__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div
+              class="faq-item__answer"
+              id="faq-answer-1"
+              role="region"
+              aria-labelledby="faq-button-1"
+              hidden
+            >
+              <p>
+                Exact age is the complete elapsed time shown in calendar years,
+                months, and remaining days between the birth date and target date.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button
+                type="button"
+                id="faq-button-2"
+                aria-expanded="false"
+                aria-controls="faq-answer-2"
+              >
+                <span>How are leap years handled?</span>
+                <span class="faq-item__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div
+              class="faq-item__answer"
+              id="faq-answer-2"
+              role="region"
+              aria-labelledby="faq-button-2"
+              hidden
+            >
+              <p>
+                The Gregorian calendar is used. Leap years occur every four years,
+                except century years not divisible by 400.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button
+                type="button"
+                id="faq-button-3"
+                aria-expanded="false"
+                aria-controls="faq-answer-3"
+              >
+                <span>How are February 29 birthdays handled?</span>
+                <span class="faq-item__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div
+              class="faq-item__answer"
+              id="faq-answer-3"
+              role="region"
+              aria-labelledby="faq-button-3"
+              hidden
+            >
+              <p>
+                In leap years, the birthday can be February 29. In common years,
+                this calculator observes the birthday on February 28.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button
+                type="button"
+                id="faq-button-4"
+                aria-expanded="false"
+                aria-controls="faq-answer-4"
+              >
+                <span>Why can end-of-month calculations be confusing?</span>
+                <span class="faq-item__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div
+              class="faq-item__answer"
+              id="faq-answer-4"
+              role="region"
+              aria-labelledby="faq-button-4"
+              hidden
+            >
+              <p>
+                Months have different lengths. This calculator uses a fixed
+                calendar anchor, so February 28 to March 31 is 1 month and 3 days.
+              </p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button
+                type="button"
+                id="faq-button-5"
+                aria-expanded="false"
+                aria-controls="faq-answer-5"
+              >
+                <span>Does daylight saving time change the result?</span>
+                <span class="faq-item__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div
+              class="faq-item__answer"
+              id="faq-answer-5"
+              role="region"
+              aria-labelledby="faq-button-5"
+              hidden
+            >
+              <p>
+                No. The MVP uses calendar dates and counts 24 elapsed hours per
+                calendar day, so daylight-saving clock changes do not alter the
+                years, months, days, or total-calendar-day result.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <p class="site-footer__brand">Age Calculator</p>
+          <p>Your dates stay in your browser.</p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="#top">Top</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#faqs">FAQs</a>
+        </nav>
+
+        <p class="site-footer__copyright">
+          &copy; <span>2026</span> Age Calculator
+        </p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
